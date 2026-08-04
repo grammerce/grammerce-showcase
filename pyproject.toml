@@ -1,0 +1,53 @@
+[tool.black]
+# 100, а не дефолтные 88: у существующего кода 99-й процентиль длины строки —
+# 98 символов. При 88 переформатировалось бы втрое больше строк без пользы
+# для читаемости.
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = ["venv", ".venv", "__pycache__"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle
+    "F",    # pyflakes
+    "I",    # isort — порядок импортов
+    "UP",   # pyupgrade — устаревшие конструкции
+    "B",    # flake8-bugbear — типичные ловушки
+    "C4",   # flake8-comprehensions
+]
+ignore = [
+    "E501",  # длину строки контролирует black
+    "B008",  # Depends() в аргументах по умолчанию — идиома FastAPI
+    "B904",  # raise ... from — отдельная задача
+    # E712 (== True) почти везде здесь — выражения-фильтры SQLAlchemy вида
+    # .where(Shop.is_active == True). Это не проверка истинности в Python,
+    # а конструирование SQL-условия, и явная форма читается однозначнее.
+    "E712",
+    # E402 — импорты после кода. В точках входа и тестах так делают намеренно:
+    # сначала выставляют переменные окружения, потом импортируют модули.
+    "E402",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# В тестах допустимы импорты внутри функций, заготовленные переменные
+# и широкий pytest.raises — они там осмысленны, а не небрежность.
+"tests/*" = ["F401", "F841", "B007", "B017", "E741"]
+
+[tool.ruff.lint.isort]
+known-first-party = [
+    "auth_utils",
+    "bot",
+    "config",
+    "database",
+    "integrations",
+    "models",
+    "payments",
+    "routers",
+    "schemas",
+    "services",
+    "utils",
+]
