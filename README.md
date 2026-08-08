@@ -128,7 +128,7 @@ flowchart TB
 ## Запуск тестов
 
 ```bash
-python -m venv venv && venv/bin/activate   # Windows: venv\Scripts\activate
+python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 pytest tests/ -q
 ```
