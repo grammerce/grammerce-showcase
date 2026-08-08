@@ -1,5 +1,5 @@
 # Grammerce — выборка исходного кода
-
+[![CI](https://github.com/grammerce/grammerce-showcase/actions/workflows/ci.yml/badge.svg)](https://github.com/grammerce/grammerce-showcase/actions/workflows/ci.yml)
 Платформа, которая превращает Telegram-бота в готовый интернет-магазин: витрина,
 приём заказов, оплата и кабинет владельца — без разработки и без своего сервера.
 Работает в Узбекистане, обслуживает магазины реальных клиентов.
